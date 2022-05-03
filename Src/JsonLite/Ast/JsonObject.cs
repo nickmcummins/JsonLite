@@ -34,5 +34,10 @@ namespace JsonLite.Ast
         /// Gets the list of JSON members.
         /// </summary>
         public IReadOnlyList<JsonMember> Members { get; }
+
+        public override string ToString()
+        {
+            return $"jsonObject(members=[\n" + string.Join(",\n", Members.Select(member => $"\t{member}")) + "\n]";
+        }
     }
 }

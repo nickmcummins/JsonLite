@@ -30,5 +30,10 @@ namespace JsonLite.Ast
         /// Gets the boolean value.
         /// </summary>
         public bool Value { get; }
+
+        public override string ToString()
+        {
+            return $"jsonBoolean(Value={Value})";
+        }
     }
 }

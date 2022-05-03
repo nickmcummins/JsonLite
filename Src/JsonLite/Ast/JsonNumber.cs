@@ -27,5 +27,10 @@ namespace JsonLite.Ast
         /// Gets the fractional number.
         /// </summary>
         public decimal Value { get; }
+
+        public override string ToString()
+        {
+            return $"jsonNumber(Value={Value})";
+        }
     }
 }

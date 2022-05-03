@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.Text;
+using System;
 using System.Diagnostics;
 
 namespace JsonLite
@@ -16,6 +17,9 @@ namespace JsonLite
         public static readonly JsonToken True = new JsonToken(JsonTokenKind.True);
         public static readonly JsonToken False = new JsonToken(JsonTokenKind.False);
         public static readonly JsonToken Null = new JsonToken(JsonTokenKind.Null);
+
+        public LinePosition StartLinePosition { get; set; }
+        public LinePosition EndLinePosition { get; set; }
 
         /// <summary>
         /// Constructor.

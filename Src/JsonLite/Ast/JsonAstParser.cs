@@ -168,7 +168,8 @@ namespace JsonLite.Ast
         /// <returns>The string that exists at the current position.</returns>
         JsonString MakeString()
         {
-            return new JsonString(Enumerator.Take().Text);
+            var jsonToken = Enumerator.Take();
+            return new JsonString(jsonToken);
         }
 
         /// <summary>

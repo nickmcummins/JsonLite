@@ -22,5 +22,10 @@
         /// Gets the value for the pair.
         /// </summary>
         public JsonValue Value { get; }
+
+        public override string ToString()
+        {
+            return $"jsonMember(name={Name},value={Value})";
+        }
     }
 }

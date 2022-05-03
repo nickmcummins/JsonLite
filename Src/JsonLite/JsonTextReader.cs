@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.Text;
+using System;
 using System.IO;
 using System.Text;
 
@@ -12,6 +13,10 @@ namespace JsonLite
         readonly TextReader _textReader;
         int _peek = NothingInPeekBuffer;
         int _position;
+        private int _currentTokenStartLineNumber = 0;
+        private int _currentLineNumber = 0;
+        private int _startPositionInLine = 0;
+        private int _positionInLine = 0;
 
         /// <summary>
         /// Constructor.
@@ -51,6 +56,7 @@ namespace JsonLite
         void Take()
         {
             _position++;
+            _positionInLine++;
             _peek = NothingInPeekBuffer;
         }
 
@@ -63,6 +69,7 @@ namespace JsonLite
             char ch;
             while (Peek(out ch))
             {
+                _positionInLine++;
                 switch (ch)
                 {
                     case '{':
@@ -119,6 +126,11 @@ namespace JsonLite
                     default:
                         if (Char.IsWhiteSpace(ch))
                         {
+                            if (ch == '\n')
+                            {
+                                _currentLineNumber++;
+                                _positionInLine = 0;
+                            }
                             Take();
                             continue;
                         }
@@ -176,6 +188,9 @@ namespace JsonLite
                             case 'n':
                                 Take();
                                 text.Append('\n');
+                                _currentLineNumber++;
+                                _positionInLine = 0;
+                                _startPositionInLine = 0;
                                 break;
 
                             case 'r':
@@ -207,8 +222,10 @@ namespace JsonLite
 
                     case '"':
                         Take();
-                        return new JsonToken(JsonTokenKind.String, text.ToString());
-
+                        var jsonToken = new JsonToken(JsonTokenKind.String, text.ToString()) { StartLinePosition = new LinePosition(_currentTokenStartLineNumber, _startPositionInLine), EndLinePosition = new LinePosition(_currentLineNumber, _positionInLine) };
+                        _startPositionInLine = _currentTokenStartLineNumber;
+                        _currentTokenStartLineNumber = _currentLineNumber;
+                        return jsonToken;
                     default:
                         Take();
                         text.Append(ch);

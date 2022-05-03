@@ -1,7 +1,12 @@
-﻿namespace JsonLite.Ast
+﻿using Microsoft.CodeAnalysis.Text;
+
+namespace JsonLite.Ast
 {
     public abstract class JsonValue
     {
+        public LinePosition StartLinePosition { get; set; }
+        public LinePosition EndLinePosition { get; set; }
+
         /// <summary>
         /// Output the JSON value as a string.
         /// </summary>
