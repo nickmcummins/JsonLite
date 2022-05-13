@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.4</TargetFrameworks>
-    <PackageId>Json.Lite</PackageId>
-    <Authors>Cain O'Sullivan</Authors>
-    <Company />
-    <PackageProjectUrl>https://github.com/cosullivan/JsonLite</PackageProjectUrl>
-    <Description>A JSON library for parsing JSON into an Abstract Syntax Tree.</Description>
-    <PackageTags>JSON C#</PackageTags>
-    <Version>2.1.0</Version>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net462</TargetFrameworks>
+        <PackageId>Json.Lite</PackageId>
+        <Authors>Cain O'Sullivan</Authors>
+        <Company />
+        <PackageProjectUrl>https://github.com/cosullivan/JsonLite</PackageProjectUrl>
+        <Description>A JSON library for parsing JSON into an Abstract Syntax Tree.</Description>
+        <PackageTags>JSON C#</PackageTags>
+        <Version>2.1.0</Version>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    </PropertyGroup>
 
 </Project>
